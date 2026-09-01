@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>【ワイヤー】イレーションズ様 診断型LP｜構成確認用</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+:root{
+  --navy:#1B3A5C; --navy-d:#12283F; --accent:#E8873A; --accent-d:#CE7128;
+  --gray-1:#F4F6F8; --gray-2:#E2E7EC; --gray-3:#9AA6B2; --text:#22303C; --white:#fff;
+  --maxw:520px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  color:var(--text);background:var(--gray-1);line-height:1.75;font-size:15px;-webkit-text-size-adjust:100%;
+  font-feature-settings:"palt"}
+h1,h2,h3,.q,.res-h .big{font-family:"Zen Kaku Gothic New","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif}
+.wrap{max-width:var(--maxw);margin:0 auto;background:var(--white);padding-bottom:88px}
+section{padding:36px 20px;border-bottom:1px solid var(--gray-2)}
+h2{font-size:19px;line-height:1.5;color:var(--navy);margin-bottom:18px}
+h3{font-size:15px;color:var(--navy);margin-bottom:6px}
+p{font-size:14px}
+.note{font-size:11.5px;color:var(--gray-3);line-height:1.6;margin-top:10px}
+.ph{background:var(--gray-2);color:var(--gray-3);display:flex;align-items:center;justify-content:center;
+  font-size:12px;border-radius:4px;text-align:center}
+
+
+/* HEROメッセージ帯 */
+.hero-msg{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-d) 100%);color:#fff;
+  padding:46px 22px 40px}
+.hero-msg .logo-slot{font-size:12px;font-weight:500;
+  color:rgba(255,255,255,.6);margin-bottom:22px}
+.hero-msg h1{font-size:31px;font-weight:900;line-height:1.42;letter-spacing:.02em;text-wrap:balance}
+.hero-msg .rule{display:block;width:46px;height:3px;background:var(--accent);
+  border-radius:2px;margin-top:22px}
+
+/* FV（メインビジュアル・全幅） */
+.hero-img{height:230px;border-radius:0;font-size:12.5px}
+
+/* バッジ（白地用） */
+.badges{display:flex;gap:6px;margin:22px 0 0;flex-wrap:wrap}
+.badge{background:#EEF3F8;border:1px solid #D3E0EB;color:var(--navy);border-radius:100px;
+  padding:6px 12px;font-size:12px;font-weight:700;white-space:nowrap}
+
+.cta{display:block;width:100%;background:var(--accent);color:#fff;border:0;border-radius:6px;
+  padding:16px;font-size:16px;font-weight:700;text-align:center;cursor:pointer;font-family:inherit;
+  box-shadow:0 3px 0 var(--accent-d)}
+.cta:active{transform:translateY(2px);box-shadow:0 1px 0 var(--accent-d)}
+.cta-sub{text-align:center;font-size:11.5px;margin-top:9px;color:var(--gray-3)}
+
+/* FV直下のリード文（本文より一段大きく読ませる） */
+.lead-copy{padding:30px 20px 32px;border-bottom:1px solid var(--gray-2)}
+.lead-copy>p{font-size:16px;line-height:1.95;color:var(--navy);margin:0 0 13px;font-weight:500;text-wrap:pretty}
+.lead-copy>p.cta-sub{font-size:11.5px;line-height:1.6;color:var(--gray-3);font-weight:400;margin:9px 0 0}
+.lead-copy b{color:var(--accent);font-weight:700}
+.lead-copy .cta{margin-top:18px}
+
+.prob{border-left:3px solid var(--accent);background:var(--gray-1);padding:14px 14px 14px 15px;margin-bottom:12px}
+.prob h3{margin-bottom:4px}
+.prob p{font-size:13px}
+
+.step{display:flex;gap:12px;margin-bottom:18px}
+.step-n{flex:0 0 34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.step p{font-size:13px}
+.tag{display:inline-block;background:var(--accent);color:#fff;font-size:11px;border-radius:3px;padding:2px 7px;margin-top:5px}
+
+#diag{background:var(--navy);color:#fff;padding:32px 18px}
+#diag h2{color:#fff}
+#diag .lead{font-size:13px;opacity:.9;margin-bottom:20px}
+.card{background:#fff;color:var(--text);border-radius:8px;padding:20px 16px}
+.prog{height:5px;background:var(--gray-2);border-radius:100px;overflow:hidden;margin-bottom:8px}
+.prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.prog-t{font-size:11px;color:var(--gray-3);margin-bottom:16px}
+.q{font-size:16px;font-weight:700;color:var(--navy);line-height:1.55;margin-bottom:14px}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--gray-2);
+  border-radius:6px;padding:13px 14px;margin-bottom:8px;font-size:14px;cursor:pointer;font-family:inherit;color:var(--text)}
+.opt:hover{border-color:var(--navy)}
+.opt.on{border-color:var(--accent);background:#FDF3EA;font-weight:700}
+.opt .chk{display:inline-block;width:16px;color:var(--accent);font-weight:700}
+.back{background:none;border:0;color:var(--gray-3);font-size:12px;cursor:pointer;
+  margin-top:10px;font-family:inherit;padding:4px 0}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.field label span{color:var(--accent);font-size:11px;margin-left:4px}
+.field input{width:100%;border:1px solid var(--gray-2);border-radius:5px;padding:12px;font-size:15px;font-family:inherit}
+.err{color:#C0392B;font-size:11.5px;margin-top:6px;display:none}
+
+.res-h{background:var(--navy);color:#fff;border-radius:6px;padding:16px;margin-bottom:14px}
+.res-h .lbl{font-size:11.5px;opacity:.8}
+.res-h .big{font-size:24px;font-weight:700;color:var(--accent);line-height:1.4;margin-top:2px}
+.res-row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--gray-2);padding:10px 0;font-size:13px}
+.res-row b{color:var(--navy);white-space:nowrap}
+.cmp{background:var(--gray-1);border-radius:6px;padding:12px;margin:14px 0;font-size:12.5px}
+.cmp div{padding:4px 0}
+.cmp .me{color:var(--navy);font-weight:700}
+
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{border:1px solid var(--gray-2);padding:9px 7px;text-align:left;vertical-align:top}
+th{background:var(--gray-1);color:var(--navy);font-weight:700}
+td.me,th.me{background:#FDF3EA}
+.scroll{overflow-x:auto}
+
+.fun{display:flex;align-items:stretch;gap:6px;text-align:center;font-size:11.5px}
+.fun>div{flex:1;background:var(--gray-1);border-radius:5px;padding:12px 4px}
+.fun .v{display:block;font-size:17px;font-weight:700;color:var(--navy);margin-top:3px}
+.fun .ar{flex:0 0 14px;background:none;display:flex;align-items:center;justify-content:center;color:var(--gray-3)}
+
+.bill{display:grid;grid-template-columns:1fr;gap:10px}
+.bill>div{border-radius:6px;padding:14px}
+.bill .yes{background:#FDF3EA;border:1px solid var(--accent)}
+.bill .no{background:var(--gray-1);border:1px solid var(--gray-2)}
+.bill h3{margin-bottom:8px}
+.bill ul{margin-left:18px;font-size:12.5px}
+
+details{border-bottom:1px solid var(--gray-2);padding:12px 0}
+summary{font-size:13.5px;font-weight:700;color:var(--navy);cursor:pointer;list-style:none;position:relative;padding-right:22px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"＋";position:absolute;right:0;color:var(--accent)}
+details[open] summary::after{content:"−"}
+details p{font-size:13px;margin-top:8px;color:#4A5866}
+
+footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:28px 20px;font-size:11.5px}
+footer .ph{height:36px;width:150px;margin-bottom:14px;background:rgba(255,255,255,.12);color:rgba(255,255,255,.5)}
+
+#bar{position:fixed;left:0;right:0;bottom:0;background:rgba(18,40,63,.96);padding:10px 14px;
+  transform:translateY(110%);transition:transform .25s;z-index:50}
+#bar.show{transform:none}
+#bar .inner{max-width:var(--maxw);margin:0 auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+
+<div class="hero-msg">
+  <p class="logo-slot">イレーションズ様のロゴ</p>
+  <h1>採用コストは、<br>応募が来た分だけ。</h1>
+  <span class="rule"></span>
+</div>
+
+<div class="hero-img ph">メインビジュアル（医療・福祉の現場）</div>
+
+<section class="lead-copy">
+  <p>医療・福祉に特化した、<br>応募課金型の求職者集客サービス。</p>
+  <p>初期費用も、広告費も<b>0円</b>。<br>費用が発生するのは、<br>応募が届いたときだけです。</p>
+
+  <div class="badges">
+    <span class="badge">初期費用 0円</span>
+    <span class="badge">広告費 0円</span>
+    <span class="badge">最低利用額なし</span>
+  </div>
+
+  <button class="cta" onclick="goDiag()">30秒で応募単価を診断する</button>
+  <p class="cta-sub">看護・介護・保育・リハビリ職／全国対応</p>
+</section>
+
+<section>
+  <h2>こんな採用の悩みは、<br>ありませんか。</h2>
+  <div class="prob"><h3>掲載費を払っても、応募が来ない</h3>
+    <p>掲載課金型の求人媒体は、採用できてもできなくても費用が発生します。「30万円かけて応募ゼロ」が起こり得ます。</p></div>
+  <div class="prob"><h3>人材紹介の手数料が重い</h3>
+    <p>年収の20〜30%。1名ご採用のたびに数十万円が出ていきます。</p></div>
+  <div class="prob"><h3>「人材紹介会社さまは対象外」と断られる</h3>
+    <p>求職者集客のサービスの多くは、人材紹介会社さまをお断りしています。当社はご利用いただけます。</p></div>
+</section>
+
+<section>
+  <h2>応募が届いた分だけ、<br>お支払いいただく仕組みです。</h2>
+  <div class="step"><div class="step-n">1</div><div>
+    <h3>求人を設計する</h3>
+    <p>職種・エリア・条件をヒアリングし、応募が集まる求人原稿を当社で作成します。</p></div></div>
+  <div class="step"><div class="step-n">2</div><div>
+    <h3>当社の費用で集客する</h3>
+    <p>複数の求人媒体へ掲載。掲載費・広告費はすべて当社が負担します。</p>
+    <span class="tag">広告費 0円</span></div></div>
+  <div class="step"><div class="step-n">3</div><div>
+    <h3>応募が届いた分だけお支払い</h3>
+    <p>応募者の情報をそのままお送りします。費用が発生するのは、応募者へのコールがつながった時点のみです。</p></div></div>
+  <p class="note">※重複応募・連絡先の不備・いたずら登録は課金対象外です（詳しくは下部「成果条件」をご覧ください）</p>
+  <div style="margin-top:20px"><button class="cta" onclick="goDiag()">30秒で応募単価を診断する</button></div>
+</section>
+
+<section id="diag">
+  <h2>30秒でわかる。<br>御社の条件での「応募1件の目安単価」</h2>
+  <p class="lead">かんたんな質問にお答えいただくだけ。職種・エリア・ご希望の応募数から、応募単価の目安と、他の採用手法と比べた場合のコストを表示します。</p>
+  <div class="card">
+    <div class="prog"><i id="bar-i"></i></div>
+    <div class="prog-t" id="prog-t">1 / 7</div>
+    <div id="stage"></div>
+  </div>
+</section>
+
+<section>
+  <h2>医療・福祉の採用に、<br>絞っています。</h2>
+  <div class="prob"><h3>① 医療・福祉に特化</h3>
+    <p>看護・介護・保育・リハビリ職に領域を絞って運用しています。当社で最も実績と継続率の高い領域です。</p></div>
+  <div class="prob"><h3>② 全国どこでも対応</h3>
+    <p>エリアによる制限はありません。</p></div>
+  <div class="prob"><h3>③ 最低利用額なし</h3>
+    <p>「月○万円から」という縛りはありません。1応募からご利用いただけます。</p></div>
+</section>
+
+<section>
+  <h2>応募から採用まで、<br>どのくらい残るか。</h2>
+  <div class="fun">
+    <div>応募<span class="v">100%</span></div>
+    <div class="ar">▶</div>
+    <div>ご連絡がついた方<span class="v">最大80%</span></div>
+    <div class="ar">▶</div>
+    <div>ご成約<span class="v">約10%</span></div>
+  </div>
+  <p style="margin-top:16px">応募単価は職種により10,000〜22,000円。<b>1名ご採用あたり およそ10万〜22万円</b>が目安です。</p>
+  <p class="note">※実績に基づく参考値です。職種・エリア・求人条件により変動します。</p>
+  <p class="note">【画像待ち】この下に「集客対応媒体（アイコン一覧）」ブロックを挿入予定。掲載可の媒体は先方確認済み、アイコン化する元画像の到着待ち。</p>
+</section>
+
+<section>
+  <h2>費用が発生するタイミングが、<br>違います。</h2>
+  <div class="scroll"><table>
+    <tr><th></th><th>掲載型 求人媒体</th><th>人材紹介</th><th class="me">本サービス</th></tr>
+    <tr><th>初期費用</th><td>発生する場合あり</td><td>なし</td><td class="me"><b>0円</b></td></tr>
+    <tr><th>広告費・掲載費</th><td>自社負担</td><td>なし</td><td class="me"><b>0円（当社負担）</b></td></tr>
+    <tr><th>費用が発生するとき</th><td>掲載時（採用の有無を問わず）</td><td>ご入社時</td><td class="me"><b>応募が届いたとき</b></td></tr>
+    <tr><th>費用の目安</th><td>掲載プランによる</td><td>年収の20〜30%</td><td class="me"><b>1応募 10,000円〜</b></td></tr>
+    <tr><th>採用できなかった場合</th><td>掲載費は戻らない</td><td>費用は発生しない</td><td class="me"><b>応募分のみ</b></td></tr>
+  </table></div>
+  <div style="margin-top:20px"><button class="cta" onclick="goDiag()">30秒で応募単価を診断する</button></div>
+</section>
+
+<section>
+  <h2>どこから費用が発生するのかを、<br>先に明示します。</h2>
+  <div class="bill">
+    <div class="yes"><h3>課金されます</h3>
+      <p style="font-size:13px">応募者へのコールが<b>つながった時点</b></p></div>
+    <div class="no"><h3>課金されません</h3>
+      <ul>
+        <li>重複応募</li>
+        <li>電話番号の不備・連絡先に繋がらない</li>
+        <li>いたずら登録</li>
+        <li>架電後にご本人でないと判明した場合（エビデンスを添えてご申請ください）</li>
+      </ul></div>
+  </div>
+  <p class="note">当社から応募者へご連絡することはありません。応募者情報をお送りしますので、御社から直接お電話ください。</p>
+</section>
+
+<section>
+  <h2>よくあるご質問</h2>
+  <details><summary>契約期間の縛りはありますか？</summary>
+    <p>ございません。最低利用額の設定もなく、1応募からご利用いただけます。</p></details>
+  <details><summary>どの職種に対応していますか？</summary>
+    <p>医療・福祉分野（看護師・准看護師・介護職・介護福祉士・ケアマネジャー・保育士・リハビリ職）に特化しています。</p></details>
+  <details><summary>人材紹介会社でも利用できますか？</summary>
+    <p>はい、歓迎しております。求職者の集客にお困りの人材紹介会社さまに多くご利用いただいています。</p></details>
+  <details><summary>応募が来なかった場合、費用はかかりますか？</summary>
+    <p>0円です。初期費用・広告費はいただいておりません。</p></details>
+</section>
+
+<footer>
+  <div class="ph">ロゴ</div>
+  <div>【要確定】会社名／所在地／電話番号／事業内容</div>
+  <div style="margin-top:10px">プライバシーポリシー ｜ 特定商取引法に基づく表記</div>
+</footer>
+</div>
+
+<div id="bar"><div class="inner"><button class="cta" onclick="goDiag()">30秒で応募単価を診断する</button></div></div>
+
+<script>
+/* 応募単価テーブル [下限,上限]。2026-08-27 先方回答。null＝レンジ未取得 */
+var PRICE = {
+  "看護師":[18000,22000], "准看護師":[18000,22000],
+  "介護職（無資格・未経験可）":[10000,16000], "介護福祉士・初任者研修修了以上":[10000,16000],
+  "ケアマネジャー":[10000,16000], "保育士":[12000,22000], "リハビリ職（PT・OT・ST）":[13000,17000],
+  "その他":null
+};
+var CLOSE_RATE = 0.10;
+var A = {}, step = 0;
+
+var QS = [
+ {k:"type", multi:false, q:"あてはまるものをお選びください。",
+  o:["人材紹介会社（求職者の応募を集めたい）","医療・福祉の事業者（自社で採用したい）","その他"]},
+ {k:"job", multi:true, q:"募集している職種をお選びください。",
+  o:["看護師","准看護師","介護職（無資格・未経験可）","介護福祉士・初任者研修修了以上","ケアマネジャー","保育士","リハビリ職（PT・OT・ST）","その他"]},
+ {k:"vol", multi:false, qA:"月に何名の応募を集めたいですか。", qB:"月に何名の応募が必要ですか。",
+  o:["1〜5名","6〜10名","11〜30名","31名以上"]},
+ {k:"area", multi:true, q:"募集エリアをお選びください。",
+  o:["北海道・東北","関東","中部","近畿","中国・四国","九州・沖縄"]},
+ {k:"now", multi:true, qA:"現在おこなっている集客施策をお選びください。", qB:"現在おこなっている採用施策をお選びください。",
+  o:["求人媒体（Indeed等）","人材紹介","ハローワーク","自社の採用サイト","SNS","特になし"]},
+ {k:"cost", multi:false, q:"現在、1ヶ月あたりにかけている費用をお選びください。",
+  o:["〜10万円","10〜30万円","30〜100万円","100万円〜"],
+  skip:function(){ var n = A.now || []; return n.length===1 && n[0]==="特になし"; }},
+ {k:"fee", multi:false, q:"1名ご成約時の、平均的な紹介手数料をお選びください。",
+  o:["〜30万円","30〜60万円","60〜100万円","100万円〜"],
+  skip:function(){ return !isA(); }},
+ {k:"gate"}, {k:"result"}
+];
+
+function isA(){ return (A.type||"").indexOf("人材紹介会社")===0; }
+/* 設問数：人材紹介会社は紹介手数料(Q7)を聞くので7問、事業者は6問 */
+function totalQ(){ return A.type ? (isA() ? 7 : 6) : 7; }
+function el(id){ return document.getElementById(id); }
+function goDiag(){ el("diag").scrollIntoView({behavior:"smooth"}); }
+
+function render(){
+  var s = QS[step];
+  while(s && s.skip && s.skip()){ step++; s = QS[step]; }
+  var t = totalQ();
+  var qn = Math.min(step+1, t);
+  el("bar-i").style.width = (step>=7 ? 100 : qn/t*100) + "%";
+  el("prog-t").textContent = step>=8 ? "診断結果" : (step===7 ? "あと1ステップ" : qn + " / " + t);
+
+  if(s.k==="gate")   return renderGate();
+  if(s.k==="result") return renderResult();
+
+  var q = s.q || (isA() ? s.qA : s.qB);
+  var h = '<div class="q">'+q+'</div>';
+  var cur = A[s.k] || (s.multi ? [] : "");
+  s.o.forEach(function(o,i){
+    var on = s.multi ? cur.indexOf(o)>=0 : cur===o;
+    h += '<button class="opt'+(on?' on':'')+'" data-i="'+i+'">'+
+         (s.multi ? '<span class="chk">'+(on?"✓":"□")+'</span>' : '')+o+'</button>';
+  });
+  if(s.multi) h += '<button class="cta" style="margin-top:8px" id="next">次へ</button>';
+  if(step>0)  h += '<button class="back" id="back">← 戻る</button>';
+  el("stage").innerHTML = h;
+
+  Array.prototype.forEach.call(el("stage").querySelectorAll(".opt"), function(b){
+    b.onclick = function(){
+      var o = s.o[+b.getAttribute("data-i")];
+      if(s.multi){
+        var a = A[s.k] || []; var j = a.indexOf(o);
+        if(j>=0) a.splice(j,1); else a.push(o);
+        A[s.k] = a; render();
+      } else { A[s.k] = o; step++; render(); }
+    };
+  });
+  if(el("next")) el("next").onclick = function(){
+    if(!(A[s.k]||[]).length){ alert("1つ以上お選びください"); return; }
+    step++; render();
+  };
+  if(el("back")) el("back").onclick = function(){
+    step--; while(QS[step].skip && QS[step].skip()) step--; render();
+  };
+}
+
+function renderGate(){
+  el("stage").innerHTML =
+   '<div class="q">診断結果をご確認いただけます。</div>'+
+   '<p style="font-size:13px;margin-bottom:16px">ご入力いただいた内容をもとに、御社の条件での応募単価の目安を表示します。</p>'+
+   '<div class="field"><label>会社名<span>必須</span></label><input id="f1" placeholder="例）株式会社○○"></div>'+
+   '<div class="field"><label>お名前<span>必須</span></label><input id="f2" placeholder="例）山田 太郎"></div>'+
+   '<div class="field"><label>電話番号<span>必須</span></label><input id="f3" type="tel" placeholder="例）03-0000-0000"></div>'+
+   '<div class="field"><label>メールアドレス<span>必須</span></label><input id="f4" type="email" placeholder="例）info@example.co.jp"></div>'+
+   '<div class="err" id="err"></div>'+
+   '<button class="cta" style="margin-top:6px" id="go">診断結果を見る</button>'+
+   '<p class="note" style="text-align:center">入力は30秒で完了します。しつこい営業のご連絡はいたしません。</p>'+
+   '<button class="back" id="back">← 戻る</button>';
+  el("go").onclick = function(){
+    var v = ["f1","f2","f3","f4"].map(function(i){ return el(i).value.trim(); });
+    var e = "";
+    if(!v[0]||!v[1]||!v[2]||!v[3]) e = "すべての項目をご入力ください。";
+    else if(!/^[0-9+\-() ]{9,}$/.test(v[2])) e = "電話番号を正しい形式でご入力ください。";
+    else if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v[3])) e = "メールアドレスを正しい形式でご入力ください。";
+    if(e){ el("err").textContent = e; el("err").style.display="block"; return; }
+    /* 本番実装：ここで Lead イベントを発火（ペルソナA/Bをパラメータで付与） */
+    step++; render();
+  };
+  el("back").onclick = function(){
+    step--; while(QS[step].skip && QS[step].skip()) step--; render();
+  };
+}
+
+function priceRange(){
+  var jobs = A.job || [], los = [], his = [], unknown = [];
+  jobs.forEach(function(j){
+    var r = PRICE[j];
+    if(r){ los.push(r[0]); his.push(r[1]); } else { unknown.push(j); }
+  });
+  if(!los.length) return {lo:null, hi:null, unknown:unknown};
+  return {lo:Math.min.apply(null,los), hi:Math.max.apply(null,his), unknown:unknown};
+}
+function yen(n){ return "¥" + n.toLocaleString("ja-JP"); }
+function volMid(){ return {"1〜5名":5,"6〜10名":10,"11〜30名":20,"31名以上":40}[A.vol] || 10; }
+
+function renderResult(){
+  var r = priceRange(), h = "";
+  if(r.lo === null){
+    h += '<div class="res-h"><div class="lbl">お選びいただいた職種</div>'+
+         '<div class="big" style="font-size:19px">担当者よりご案内します</div></div>'+
+         '<p style="font-size:13px">お選びいただいた職種は、求人数やご契約時期による変動が大きいため、'+
+         '担当者より個別に単価をご案内いたします。</p>'+
+         '<p class="note">「その他」の職種は個別にレンジを確認のうえご案内します。</p>';
+  } else {
+    var rangeTxt = (r.lo===r.hi) ? yen(r.lo) : yen(r.lo)+"〜"+yen(r.hi);
+    var per1lo = r.lo/CLOSE_RATE, per1hi = r.hi/CLOSE_RATE, v = volMid();
+    if(isA()){
+      var feeMid = {"〜30万円":300000,"30〜60万円":450000,"60〜100万円":800000,"100万円〜":1200000}[A.fee] || 450000;
+      var roas = Math.round(feeMid / per1hi * 100);
+      h += '<div class="res-h"><div class="lbl">御社の条件なら、応募1件あたり</div>'+
+           '<div class="big">'+rangeTxt+'</div></div>'+
+           '<div class="res-row"><span>1名ご成約までの応募コスト</span><b>約'+yen(Math.round(per1hi))+'〜</b></div>'+
+           '<div class="res-row"><span>ご成約1件あたりの紹介手数料</span><b>'+(A.fee||"—")+'</b></div>'+
+           '<div class="res-row"><span>想定ROAS</span><b style="color:#E8873A;font-size:17px">約'+roas+'%</b></div>'+
+           '<p style="font-size:13px;margin-top:14px">人材紹介会社さまのご利用を歓迎しています。'+
+           '求人数の多い会社さまほど、費用対効果が出やすい設計です。</p>';
+    } else {
+      h += '<div class="res-h"><div class="lbl">御社の条件なら、応募1件あたり</div>'+
+           '<div class="big">'+rangeTxt+'</div></div>'+
+           '<div class="res-row"><span>月'+v+'名の応募をご希望の場合</span><b>'+yen(r.lo*v)+'〜'+yen(r.hi*v)+'</b></div>'+
+           '<div class="res-row"><span>1名ご採用あたり</span><b>約'+yen(Math.round(per1lo))+'〜'+yen(Math.round(per1hi))+'</b></div>'+
+           '<p class="note">応募の約10%がご成約に至った場合の目安です。</p>'+
+           '<div class="cmp">'+
+             '<div>求人媒体（掲載課金）：採用できなくても掲載費が発生します</div>'+
+             '<div>人材紹介：年収の20〜30%（年収350万円の場合 70〜105万円）</div>'+
+             '<div class="me">本サービス：応募が届いた分だけ</div>'+
+           '</div>';
+    }
+    if(r.unknown.length){
+      h += '<p class="note">※'+r.unknown.join("・")+'は担当者より個別にご案内します。</p>';
+    }
+  }
+  h += '<p class="note">※上記は目安です。実際の単価は職種・求人数・ご契約時期により変動します。</p>'+
+       '<div style="margin-top:18px"><div class="q" style="font-size:15px">ご都合のよい日時をお選びください。</div>'+
+       '<div class="ph" style="height:180px">TimeRex 埋め込み枠<br>※貴社アカウントの日程調整URL</div>'+
+       '<p class="note">ここでのご予約完了が商談数の実測値になります（Schedule イベント）。</p></div>'+
+       '<button class="back" id="again">← 条件を選び直す</button>';
+  el("stage").innerHTML = h;
+  el("again").onclick = function(){ A={}; step=0; render(); };
+}
+
+window.addEventListener("scroll", function(){
+  var d = el("diag").getBoundingClientRect();
+  var inDiag = d.top < window.innerHeight*0.7 && d.bottom > 0;
+  el("bar").className = (window.scrollY > 320 && !inDiag) ? "show" : "";
+});
+render();
+</script>
+</body>
+</html>
