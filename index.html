@@ -401,9 +401,6 @@ function renderResult(){
          '<b>約'+yen(Math.round(per1lo))+'〜'+yen(Math.round(per1hi))+'</b></div>'+
          '<p class="note">応募の約10%がご成約に至った場合の目安です。</p>'+
          '<div class="cmp"><div class="me">応募が届いた分だけ費用請求となります。</div></div>';
-    if(r.unknown.length){
-      h += '<p class="note">※'+r.unknown.join("・")+'は担当者より個別にご案内します。</p>';
-    }
   }
   h += '<p class="note">※上記は目安です。実際の単価は職種・求人数・ご契約時期により変動します。</p>'+
        '<div style="margin-top:18px"><div class="q" style="font-size:15px">ご都合のよい日時をお選びください。</div>'+
