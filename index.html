@@ -153,7 +153,9 @@ p{font-size:14px}
 .res-h .big{font-size:24px;font-weight:700;color:var(--accent);line-height:1.4;margin-top:2px}
 .res-row{display:flex;justify-content:space-between;gap:10px;
   border-bottom:1px dashed var(--gray-2);padding:10px 0;font-size:13px}
-.res-row b{color:var(--navy);white-space:nowrap}
+.res-row b{color:var(--navy);white-space:nowrap;text-align:right}
+.res-row b.hl{color:var(--accent);font-size:15px}
+.res-sep{margin:16px 0 4px;font-size:11.5px;color:var(--gray-3);font-weight:700}
 .cmp{background:var(--gray-1);border-radius:6px;padding:12px;margin:14px 0;font-size:12.5px}
 .cmp div{padding:4px 0}
 .cmp .me{color:var(--navy);font-weight:700}
@@ -297,10 +299,10 @@ footer a{color:rgba(255,255,255,.8)}
 
 <section id="diag">
   <h2>30秒でわかる。<br>御社の「応募1件の目安単価」</h2>
-  <p class="lead">3つの質問にお答えいただくだけ。募集職種から、応募単価の目安を表示します。</p>
+  <p class="lead">6つの質問にお答えいただくだけ。応募単価の目安に加えて、想定のご成約数と費用対効果（ROAS）まで表示します。</p>
   <div class="card">
     <div class="prog"><i id="bar-i"></i></div>
-    <div class="prog-t" id="prog-t">1 / 3</div>
+    <div class="prog-t" id="prog-t">1 / 6</div>
     <div id="stage"></div>
   </div>
 </section>
@@ -390,11 +392,17 @@ var QS = [
   o:["看護師","准看護師","介護職（無資格・未経験可）","介護福祉士・初任者研修修了以上","ケアマネジャー","保育士","リハビリ職（PT・OT・ST）","その他"]},
  {k:"area", multi:true, q:"募集エリアをお選びください。",
   o:["北海道・東北","関東","中部","近畿","中国・四国","九州・沖縄"]},
+ {k:"vol", multi:false, q:"月に何件の応募を集めたいですか。",
+  o:["1〜10件","11〜30件","31〜50件","51件以上"]},
+ {k:"cur", multi:false, q:"現在の応募単価はおいくらですか。",
+  o:["〜10,000円","10,000〜20,000円","20,000〜30,000円","30,000円以上","わからない"]},
+ {k:"fee", multi:false, q:"1名ご成約時の、平均的な紹介手数料をお選びください。",
+  o:["〜30万円","30〜60万円","60〜100万円","100万円〜","わからない"]},
  {k:"now", multi:true, q:"現在おこなっている集客施策をお選びください。",
   o:["求人媒体（Indeed・求人ボックス・スタンバイなど）","LP広告（Google・Instagramなど）","自社の採用サイト","SNS","その他"]},
  {k:"gate"}, {k:"result"}
 ];
-var NQ = 3;
+var NQ = 6;
 
 /* 2026-09-07 ターゲットを医療・福祉の人材紹介会社に一本化。ペルソナ分岐は廃止 */
 function el(id){ return document.getElementById(id); }
@@ -479,6 +487,15 @@ function priceRange(){
 }
 function yen(n){ return "¥" + n.toLocaleString("ja-JP"); }
 
+/* 回答の代表値。レンジ回答は中央値を使う */
+var VOL  = {"1〜10件":10, "11〜30件":30, "31〜50件":50, "51件以上":70};
+var FEE  = {"〜30万円":300000, "30〜60万円":450000, "60〜100万円":800000, "100万円〜":1200000};
+var CUR  = {"〜10,000円":10000, "10,000〜20,000円":15000, "20,000〜30,000円":25000, "30,000円以上":32000};
+
+function row(label, value, strong){
+  return '<div class="res-row"><span>'+label+'</span><b'+(strong?' class="hl"':'')+'>'+value+'</b></div>';
+}
+
 function renderResult(){
   var r = priceRange(), h = "";
   if(r.lo === null){
@@ -487,15 +504,41 @@ function renderResult(){
          '<p style="font-size:13px">お選びいただいた職種は、求人数やご契約時期による変動が大きいため、担当者より個別に単価をご案内いたします。</p>';
   } else {
     var rangeTxt = (r.lo===r.hi) ? yen(r.lo) : yen(r.lo)+"〜"+yen(r.hi);
-    var per1lo = r.lo/CLOSE_RATE, per1hi = r.hi/CLOSE_RATE;
+    var vol = VOL[A.vol] || 30;
+    var costLo = r.lo*vol, costHi = r.hi*vol;
+    var close  = vol*CLOSE_RATE;                       /* 想定ご成約数 */
+    var closeTxt = (close < 1) ? close.toFixed(1) : String(Math.round(close*10)/10);
+
     h += '<div class="res-h"><div class="lbl">御社の条件なら、応募1件あたり</div>'+
-         '<div class="big">'+rangeTxt+'</div></div>'+
-         '<div class="res-row"><span>1名ご成約までの応募コスト</span>'+
-         '<b>約'+yen(Math.round(per1lo))+'〜'+yen(Math.round(per1hi))+'</b></div>'+
-         '<p class="note">応募の約10%がご成約に至った場合の目安です。</p>'+
+         '<div class="big">'+rangeTxt+'</div></div>';
+
+    /* 現在の単価との比較（わからない場合は出さない） */
+    var cur = CUR[A.cur];
+    if(cur){
+      var diff = Math.round((1 - (r.lo+r.hi)/2/cur) * 100);
+      h += row('現在の応募単価', yen(cur)+'（ご回答）');
+      if(diff > 0) h += row('当社をご利用の場合', '1応募あたり 約'+diff+'% 削減', true);
+    }
+
+    h += '<div class="res-sep">月'+vol+'件の応募をご希望の場合</div>'+
+         row('月額の目安', yen(costLo)+'〜'+yen(costHi))+
+         row('想定ご成約数', '約'+closeTxt+'名 / 月');
+
+    /* 紹介手数料が分かれば 売上とROASまで出す */
+    var fee = FEE[A.fee];
+    if(fee){
+      var rev = close*fee;
+      var roasLo = Math.round(rev/costHi*100), roasHi = Math.round(rev/costLo*100);
+      h += row('想定売上', '約'+yen(Math.round(rev))+' / 月')+
+           row('想定ROAS', '約'+roasLo+'〜'+roasHi+'%', true);
+    } else {
+      h += '<p class="note">紹介手数料をお知らせいただくと、想定売上と費用対効果（ROAS）まで算出できます。</p>';
+    }
+
+    h += '<p class="note">ご成約数は、応募の約10%がご成約に至った場合の目安です（当社実績に基づく参考値）。</p>'+
          '<div class="cmp"><div class="me">応募が届いた分だけ費用請求となります。</div></div>';
   }
-  h += '<p class="note">※上記は目安です。実際の単価は職種・求人数・ご契約時期により変動します。</p>'+
+  h += '<p class="note">※上記はすべて目安です。実際の単価・成約率は職種・エリア・求人数・ご契約時期により変動します。</p>'+
        '<div style="margin-top:18px"><div class="q" style="font-size:15px">ご都合のよい日時をお選びください。</div>'+
        '<div class="ph" style="height:180px">TimeRex 埋め込み枠<br>※貴社アカウントの日程調整URL</div>'+
        '<p class="note">ここでのご予約完了が商談数の実測値になります（Schedule イベント）。</p></div>'+
