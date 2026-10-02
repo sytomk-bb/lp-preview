@@ -639,7 +639,15 @@ var A = {}, step = 0;
 /* 日程調整（TimeRex）。2026-09-30 林屋様よりご共有。
    ※ timerex.net は X-Frame-Options: SAMEORIGIN のため iframe 埋め込み不可。別タブで開く */
 var TIMEREX = "https://timerex.net/s/elations06/a5544582";
+function onLead(){
+  /* 連絡先の送信＝リード獲得。職種・エリアを付けて、どこから商談が生まれたか見られるようにする */
+  var p = { job: (A.job||[]).join("|"), area: (A.area||[]).join("|"), now: (A.now||[]).join("|") };
+  try{ if(window.fbq) fbq('track','Lead', {content_category:p.job, content_name:p.area}); }catch(e){}
+  try{ if(window.dataLayer) dataLayer.push(Object.assign({event:'lead'}, p)); }catch(e){}
+}
 function onSchedule(){
+  /* TimeRexは別タブで開くため、予約完了そのものはLP側で取れない。
+     ここで取れるのは「予約ページへ進んだ」まで。実予約数はTimeRex側と突き合わせる */
   try{ if(window.fbq) fbq('track','Schedule'); }catch(e){}
   try{ if(window.dataLayer) dataLayer.push({event:'schedule_click'}); }catch(e){}
 }
@@ -721,7 +729,7 @@ function renderGate(){
     else if(!/^[0-9+\-() ]{9,}$/.test(v[2])) e = "電話番号を正しい形式でご入力ください。";
     else if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v[3])) e = "メールアドレスを正しい形式でご入力ください。";
     if(e){ el("err").textContent = e; el("err").style.display="block"; return; }
-    /* 本番実装：ここで Lead イベントを発火（9/7の一本化でペルソナ別パラメータは不要。職種・エリアを付与） */
+    onLead();
     step++; render();
   };
   el("back").onclick = function(){ step--; render(); };
